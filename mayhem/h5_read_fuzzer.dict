@@ -1,0 +1,48 @@
+# HDF5 file-format dictionary for the libFuzzer/Mayhem mutation engine.
+# Tokens are the on-disk magic/signatures the HDF5 parser keys on, so mutated
+# inputs more often reach deeper parse paths instead of bouncing off the
+# superblock check. Sources: src/H5Fprivate.h (superblock) + src/H5*pkg.h block signatures.
+
+# Superblock signature: "\211HDF\r\n\032\n" == \x89 H D F \r \n \x1a \n
+superblock="\x89HDF\x0d\x0a\x1a\x0a"
+
+# Object header (v1 prefix + v2 magic) / continuation
+ohdr_v2="OHDR"
+ochk="OCHK"
+
+# Symbol table node + v1 B-tree
+snod="SNOD"
+btree_v1="TREE"
+
+# v2 B-tree
+bt2_hdr="BTHD"
+bt2_internal="BTIN"
+bt2_leaf="BTLF"
+
+# Local heap + global heap collection
+local_heap="HEAP"
+global_heap="GCOL"
+
+# Fractal heap
+frhp="FRHP"
+fhdb="FHDB"
+fhib="FHIB"
+
+# Free-space manager
+fsm_hdr="FSHD"
+fsm_sect="FSSE"
+
+# Extensible array
+ea_hdr="EAHD"
+ea_iblock="EAIB"
+ea_sblock="EASB"
+ea_dblock="EADB"
+
+# Fixed array
+fa_hdr="FAHD"
+fa_dblock="FADB"
+
+# Shared object header message table/list
+sohm="SOHM"
+smtb="SMTB"
+smli="SMLI"

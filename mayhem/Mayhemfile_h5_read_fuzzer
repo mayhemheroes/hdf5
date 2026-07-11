@@ -1,0 +1,9 @@
+project: hdf5
+target: h5_read_fuzzer
+cmds:
+  - cmd: /mayhem/h5_read_fuzzer
+    libfuzzer: true
+    dictionary: /mayhem/mayhem/h5_read_fuzzer.dict
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/h5_read_fuzzer/testsuite
